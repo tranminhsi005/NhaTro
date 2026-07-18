@@ -1,0 +1,6 @@
+@NhaTro.Api_HostAddress = http://localhost:5195
+
+GET {{NhaTro.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
