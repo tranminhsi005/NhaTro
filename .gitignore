@@ -6,7 +6,7 @@ obj/
 appsettings.Development.json
 appsettings.Production.json
 
-# Vue / Node
+# Vue / Node — chỉ ignore subfolder, KHÔNG ignore toàn bộ frontend
 frontend/node_modules/
 frontend/dist/
 frontend/.env
