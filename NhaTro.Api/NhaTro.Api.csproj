@@ -8,14 +8,16 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
+    <PackageReference Include="EFCore.NamingConventions" Version="8.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\NhaTro.Application\NhaTro.Application.csproj" />
-    <ProjectReference Include="..\NhaTro.Infrastructure\NhaTro.Infrastructure.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\NhaTro.Application\NhaTro.Application.csproj" />
+		<ProjectReference Include="..\NhaTro.Infrastructure\NhaTro.Infrastructure.csproj" />
+		<ProjectReference Include="..\NhaTro.Domain\NhaTro.Domain.csproj" />
+	</ItemGroup>
 
   <ItemGroup>
     <Folder Include="Middleware\" />

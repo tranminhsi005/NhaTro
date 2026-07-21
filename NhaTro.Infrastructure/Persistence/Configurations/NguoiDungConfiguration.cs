@@ -10,12 +10,12 @@ public class NguoiDungConfiguration : IEntityTypeConfiguration<NguoiDung>
     {
         builder.ToTable("nguoi_dung");
         builder.HasKey(x => x.Id);
+
         builder.Property(x => x.Id).HasColumnName("id");
-        builder.Property(x => x.Email).HasColumnName("email").IsRequired();
-        builder.HasIndex(x => x.Email).IsUnique();
-        builder.Property(x => x.MatKhauHash).HasColumnName("mat_khau_hash").IsRequired();
+        builder.Property(x => x.Email).HasColumnName("email");
+        builder.Property(x => x.MatKhauHash).HasColumnName("mat_khau_hash");
         builder.Property(x => x.SecurityStamp).HasColumnName("security_stamp");
-        builder.Property(x => x.HoTen).HasColumnName("ho_ten").IsRequired();
+        builder.Property(x => x.HoTen).HasColumnName("ho_ten");
         builder.Property(x => x.SoDienThoai).HasColumnName("so_dien_thoai");
         builder.Property(x => x.DuongDanAvatar).HasColumnName("duong_dan_avatar");
         builder.Property(x => x.IdVaiTro).HasColumnName("id_vai_tro");
@@ -29,7 +29,8 @@ public class NguoiDungConfiguration : IEntityTypeConfiguration<NguoiDung>
         builder.Property(x => x.NgayXoa).HasColumnName("ngay_xoa");
 
         builder.HasOne(x => x.VaiTro)
-               .WithMany(v => v.NguoiDungs)
-               .HasForeignKey(x => x.IdVaiTro);
+               .WithMany()
+               .HasForeignKey(x => x.IdVaiTro)
+               .OnDelete(DeleteBehavior.Restrict);
     }
 }

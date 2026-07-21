@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using NhaTro.Application.Interfaces.Services;
 using NhaTro.Infrastructure.Persistence;
+using NhaTro.Application;
+using NhaTro.Infrastructure.Services;
 using System.Text;
+using EFCore.NamingConventions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,7 +38,12 @@ builder.Services.AddSwaggerGen(options =>
 
 // 2. Database
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+           //.UseSnakeCaseNamingConvention()
+           .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information));
+
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 
 // 3. JWT Authentication
 var jwtSecret = builder.Configuration["Jwt:Secret"]!;
@@ -58,7 +67,7 @@ builder.Services.AddAuthentication(options =>
 });
 builder.Services.AddAuthorization();
 
-// 4. CORS — ??c t? config, không hardcode domain trong code
+// 4. CORS 
 var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
 builder.Services.AddCors(options =>
 {

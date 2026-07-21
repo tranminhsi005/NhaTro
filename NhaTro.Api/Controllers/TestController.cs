@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NhaTro.Infrastructure.Persistence;
 using NhaTro.Api.Constants;
-using NhaTro.Infrastructure.Persistence;
 
 namespace NhaTro.Api.Controllers;
 

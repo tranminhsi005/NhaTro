@@ -13,6 +13,5 @@ namespace NhaTro.Domain.Entities
         public string TenVaiTro { get; set; } = default!;
         public DateTime NgayTao { get; set; }
 
-        public ICollection<NguoiDung> NguoiDungs { get; set; } = new List<NguoiDung>();
     }
 }

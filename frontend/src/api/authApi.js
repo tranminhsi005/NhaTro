@@ -5,5 +5,4 @@ import { ENDPOINTS } from "./endpoints";
 export const authApi = {
   login: (data) => axiosClient.post(ENDPOINTS.AUTH.LOGIN, data),
   register: (data) => axiosClient.post(ENDPOINTS.AUTH.REGISTER, data),
-  refreshToken: (data) => axiosClient.post(ENDPOINTS.AUTH.REFRESH_TOKEN, data),
 };

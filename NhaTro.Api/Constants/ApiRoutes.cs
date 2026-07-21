@@ -7,9 +7,8 @@
         public static class Auth
         {
             public const string Base = $"{ApiRoutes.Base}/auth";
-            public const string Login = $"{Base}/login";
-            public const string Register = $"{Base}/register";
-            public const string RefreshToken = $"{Base}/refresh-token";
+            public const string Register = "register";
+            public const string Login = "login";
         }
 
         public static class Phong
