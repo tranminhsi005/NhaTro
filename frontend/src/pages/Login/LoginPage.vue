@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../../stores/authStore'
 import { authApi } from '../../api/authApi'
@@ -12,6 +12,13 @@ const password = ref('')
 const loading = ref(false)
 const error = ref('')
 const rememberMe = ref(false)
+const showPassword = ref(false)
+
+const passwordFieldType = computed(() => (showPassword.value ? 'text' : 'password'))
+
+function togglePasswordVisibility() {
+  showPassword.value = !showPassword.value
+}
 
 async function handleLogin() {
   error.value = ''
@@ -76,13 +83,31 @@ async function handleLogin() {
 
             <div class="form-group">
               <label for="password">MẬT KHẨU</label>
-              <input
-                id="password"
-                v-model="password"
-                type="password"
-                placeholder="Nhập mật khẩu"
-                class="input-field"
-              />
+              <div class="password-wrapper">
+                <input
+                  id="password"
+                  v-model="password"
+                  :type="passwordFieldType"
+                  placeholder="Nhập mật khẩu"
+                  class="input-field"
+                />
+                <button
+                  type="button"
+                  class="toggle-password"
+                  @click="togglePasswordVisibility"
+                  :aria-label="showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'"
+                  tabindex="-1"
+                >
+                  <svg v-if="showPassword" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17.94 17.94A10.94 10.94 0 0112 20c-7 0-11-8-11-8a20.3 20.3 0 015.06-6.06M9.9 4.24A10.94 10.94 0 0112 4c7 0 11 8 11 8a20.3 20.3 0 01-3.22 4.47M14.12 14.12a3 3 0 11-4.24-4.24" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="1" y1="1" x2="23" y2="23" stroke-linecap="round"/>
+                  </svg>
+                  <svg v-else viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+              </div>
             </div>
 
             <div class="form-footer">
@@ -220,6 +245,36 @@ label {
   outline: none;
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper .input-field {
+  padding-right: 42px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.toggle-password:hover {
+  color: #667eea;
 }
 
 .form-footer {
