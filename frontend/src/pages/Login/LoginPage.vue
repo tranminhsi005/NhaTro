@@ -51,17 +51,16 @@ async function handleLogin() {
     <div class="login-box">
       <div class="login-left">
         <div class="brand">
-          <h2>🏠 QUẢN LÝ TRỌ</h2>
+          <h2>QUẢN LÝ TRỌ</h2>
           <p>Hệ Thống Quản Lý Trọ</p>
         </div>
         <div class="illustration">🏢</div>
-        <p class="tagline">Giải pháp vận hành, quản lý nhà nước và ủy thác cho tất cả</p>
       </div>
 
       <div class="login-right">
         <div class="form-container">
           <h1>Đăng nhập</h1>
-          <p class="subtitle">Chào mừng bạn quay trở lại</p>
+          <p class="subtitle">Chào mừng quay trở lại</p>
 
           <form @submit.prevent="handleLogin">
             <div class="form-group">
